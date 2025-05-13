@@ -1,24 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_management/source/colors.dart';
 import 'module/login/login_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hotel_management/source/theme.dart';
 
-void main() {
-  runApp(const HotelApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Save the latest app mode preference
+  final prefs = await SharedPreferences.getInstance();
+  final isDarkMode = prefs.getBool('isDarkMode') ?? false;
+  runApp(HotelApp(isDarkMode: isDarkMode));
 }
 
-class HotelApp extends StatelessWidget {
-  const HotelApp({super.key});
+class HotelApp extends StatefulWidget {
+  const HotelApp({super.key, required this.isDarkMode});
+  final bool isDarkMode;
+
+  @override
+  State<HotelApp> createState() => _HotelAppState();
+}
+
+class _HotelAppState extends State<HotelApp> {
+  bool isDarkMode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isDarkMode = widget.isDarkMode;
+  }
+
+  // Toggle the UI and colors based on mode
+  void toggleTheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() => isDarkMode = !isDarkMode);
+    await prefs.setBool('isDarkMode', isDarkMode);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(
-            gradient: primaryGradient,
-          ),
-          child: const LoginScreen(),
-        ),
+      theme: widget.isDarkMode ? darkTheme : lightTheme,
+      home: LoginScreen(
+        isDarkMode: isDarkMode,
+        onToggleTheme: toggleTheme,
       ),
     );
   }

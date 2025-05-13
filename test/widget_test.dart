@@ -7,24 +7,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:hotel_management/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const HotelApp());
+  testWidgets('App loads with light mode by default', (WidgetTester tester) async {
+    SharedPreferences.setMockInitialValues({});
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    final prefs = await SharedPreferences.getInstance();
+    final isDarkMode = prefs.getBool('isDarkMode') ?? false;
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    await tester.pumpWidget(HotelApp(isDarkMode: isDarkMode));
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.byType(MaterialApp), findsOneWidget);
+    expect(find.text('Welcome, Guest'), findsOneWidget);
   });
 }
+
