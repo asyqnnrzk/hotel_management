@@ -24,6 +24,7 @@ Features:
 - Dark mode & light mode toggle
 - Loads data from JSON (locally)
 - Save user data in SharedPreferences
+- Flushbar to indicate the functionality of the buttons.
 
 *****
 
@@ -69,6 +70,13 @@ flutter run
 or
 
 Install the APK file in ZIP file attached.
+
+*****
+
+Hard code data for login:
+
+Email: test@gmail.com
+Password: Ace12345
 
 *****
 
