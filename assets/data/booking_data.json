@@ -1,0 +1,23 @@
+[
+  {
+    "guestName": "Carl",
+    "roomNumber": "236",
+    "checkIn": "23-May-2025, 12 pm",
+    "checkOut": "24-May-2025, 12 pm",
+    "status": "Confirmed"
+  },
+  {
+    "guestName": "Anita",
+    "roomNumber": "109",
+    "checkIn": "20-May-2025, 12 pm",
+    "checkOut": "23-May-2025, 12 pm",
+    "status": "Pending"
+  },
+  {
+    "guestName": "Badrul",
+    "roomNumber": "201",
+    "checkIn": "20-May-2025, 12 pm",
+    "checkOut": "24-May-2025, 12 pm",
+    "status": "Cancelled"
+  }
+]
