@@ -91,3 +91,7 @@ Flutter dependencies used (can be viewed on pubspec.yaml file:
 
 - another_flushbar: ^1.10.28
 - shared_preferences: ^2.3.3
+
+*****
+
+Author: Nurul Asyiqin Abdul Razak
